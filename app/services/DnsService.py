@@ -6,6 +6,7 @@ class DnsService:
     URL_DOMAIN_TO_HEXA_API = "https://dnstwister.report/api/to_hex/"
     URL_IP_API = "https://dnstwister.report/api/ip/"
     URL_LOCATION_API = "http://ip-api.com/json/"
+    URL_MX_API = "https://dnstwister.report/api/mx/"
 
     @staticmethod
     async def convert_to_hexadecimal(domain):
@@ -59,3 +60,12 @@ class DnsService:
     async def find_location_by_domain(domain):
         ip = await DnsService.find_ip_by_domain(domain)
         return await DnsService.find_location_by_ip(ip)
+
+    @staticmethod
+    async def find_available_domain(domain):
+        url = DnsService.URL_MX_API + await DnsService.convert_to_hexadecimal(domain)
+        response = requests.get(url).json()
+        if response["mx"]:
+            return False
+        else:
+            return True

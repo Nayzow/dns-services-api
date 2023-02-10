@@ -25,6 +25,10 @@ class DnsController:
         return await DnsService.find_ip_by_domain(domain)
 
     @staticmethod
+    async def find_available_domain(domain):
+        return await DnsService.find_available_domain(domain)
+
+    @staticmethod
     async def data_to_object(site):
         domain = site["domain"]
         hexadecimal = site["domain_as_hexadecimal"]
