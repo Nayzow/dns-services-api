@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.controllers.DnsController import DnsController
+from app.controllers.DomainsController import DnsController
 
 app = FastAPI()
 
