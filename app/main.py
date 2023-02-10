@@ -1,24 +1,25 @@
 from fastapi import FastAPI
-from app.services.DnsService import DnsService
+
+from app.controllers.DnsController import DnsController
 
 app = FastAPI()
 
 
-@app.get("/phishing/{dns}")
-async def phishing_sites_from_name(dns):
-    return DnsService.phishing_sites_from_name(dns)
+@app.get("/phishing/{domain}")
+async def find_phishing_sites_by_domain(domain):
+    return await DnsController.find_all_phishing_sites_by_domain(domain)
 
 
-@app.get("/phishing/hexa/{dns}")
-async def phishing_sites_from_hexadecimal(dns):
-    return DnsService.phishing_sites_from_hexadecimal(dns)
+@app.get("/phishing/location/{domain}")
+async def find_all_phishing_sites_and_location_by_domain(domain):
+    return await DnsController.find_all_phishing_sites_and_location_by_domain(domain)
 
 
-@app.get("/ip/{dns}")
-async def ip_from_dns(dns):
-    return DnsService.ip_from_name(dns)
+@app.get("/ip/{domain}")
+async def find_ip_by_domain(domain):
+    return await DnsController.find_ip_by_domain(domain)
 
 
-@app.get("/location/{dns}")
-async def location_from_dns(dns):
-    return DnsService.location_from_dns(dns)
+@app.get("/location/{domain}")
+async def find_location_by_domain(domain):
+    return await DnsController.find_location_by_domain(domain)

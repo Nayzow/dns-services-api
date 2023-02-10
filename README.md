@@ -49,18 +49,22 @@ Vous pouvez maintenant utiliser les différentes routes de l'API documentées en
 
 L'API expose ces différentes routes :
 
+### GET
+
 ```
-/phishing/{dns} : retourne les sites de phishing associés à un nom de domaine.
+/phishing/{domain} : retourne les potentiels sites de phishing associés à un nom de domaine.
 ```
 
 ```
-/phishing/hexa/{hexadecimal} : retourne les sites de phishing associés à la représentation hexadécimale d'un nom de domaine.
+/phishing/location/{domain} : retourne les potentiels sites de phishing associés à un nom de domaine ainsi que leur géolocalisation.
 ```
 
 ```
-/ip/{dns} : retourne l'ip d'un nom de domaine
+/ip/{domain} : retourne l'ip d'un nom de domaine.
 ```
 
 ```
-/location/{dns} : retourne des informations de géolocalisation d'un nom de domaine
+/location/{domain} : retourne des informations de géolocalisation d'un nom de domaine
 ```
+
+Notez que la requête GET /phishing/location/{domain} peut prendre quelque temps à se réaliser.
