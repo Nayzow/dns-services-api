@@ -39,7 +39,7 @@ docker build -t dns-services-api .
 #### 2. Run un conteneur à partir de l'image Docker
 
 ```bash
-docker run --name dns-services-api -p 8000:8000 -d dns-services-api
+docker run --name dns-services-api -p 8888:8888 -d dns-services-api
 ```
 
 Après avoir exécuté ces commandes, votre API FastAPI sera disponible à l'adresse http://localhost:8000.
@@ -65,6 +65,10 @@ L'API expose ces différentes routes :
 
 ```
 /location/{domain} : retourne des informations de géolocalisation d'un nom de domaine
+```
+
+```
+/available/{domain} : retourne true si le domaine est disponible à l'achat, false si il ne l'est pas.
 ```
 
 Notez que la requête GET /phishing/location/{domain} peut prendre quelque temps à se réaliser.
