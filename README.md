@@ -23,6 +23,7 @@ pip install -r requirements.txt
 ```bash
 uvicorn app.main:app
 ```
+Après avoir exécuté ces commandes, votre API FastAPI sera disponible à l'adresse http://localhost:8000.
 
 ### Lancer l'API avec Docker
 
@@ -42,7 +43,7 @@ docker build -t dns-services-api .
 docker run --name dns-services-api -p 8888:8888 -d dns-services-api
 ```
 
-Après avoir exécuté ces commandes, votre API FastAPI sera disponible à l'adresse http://localhost:8000.
+Après avoir exécuté ces commandes, votre API FastAPI sera disponible à l'adresse http://localhost:8888.
 Vous pouvez maintenant utiliser les différentes routes de l'API documentées en dessous.
 
 ## Documentation de l'API
@@ -53,10 +54,6 @@ L'API expose ces différentes routes :
 
 ```
 /phishing/{domain} : retourne les potentiels sites de phishing associés à un nom de domaine.
-```
-
-```
-/phishing/location/{domain} : retourne les potentiels sites de phishing associés à un nom de domaine ainsi que leur géolocalisation.
 ```
 
 ```

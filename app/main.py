@@ -23,11 +23,6 @@ async def find_phishing_sites_by_domain(domain):
     return await DnsController.find_all_phishing_sites_by_domain(domain)
 
 
-@app.get("/phishing/location/{domain}")
-async def find_all_phishing_sites_and_location_by_domain(domain):
-    return await DnsController.find_all_phishing_sites_and_location_by_domain(domain)
-
-
 @app.get("/ip/{domain}")
 async def find_ip_by_domain(domain):
     return await DnsController.find_ip_by_domain(domain)
