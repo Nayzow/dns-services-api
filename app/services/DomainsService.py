@@ -49,7 +49,7 @@ class DomainsService:
     @staticmethod
     async def find_location_by_ip(ip):
         if ip:
-            url = DomainsService.URL_LOCATION_API + ip
+            url = DomainsService.URL_LOCATION_API + ip + "?fields=continent,country,regionName,city,zip,lat,lon,timezone,currency,isp,org,reverse,mobile,proxy,hosting,query"
             response = requests.get(url).json()
             if response:
                 return response
