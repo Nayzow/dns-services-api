@@ -52,7 +52,7 @@ L'API expose ces différentes routes :
 
 ### GET
 
-#### Les deux principales routes, notamment utilisées pour la web app.
+#### Les deux principales routes, notamment utilisées pour l'application web.
 
 ```
 /api/domains/{domain} : retourne les potentiels sites de phishing associés à un nom de domaine.
