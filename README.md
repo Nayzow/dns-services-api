@@ -44,7 +44,7 @@ docker run --name dns-services-api -p 8888:8888 -d dns-services-api
 ```
 
 Après avoir exécuté ces commandes, votre API FastAPI sera disponible à l'adresse http://localhost:8888.
-Vous pouvez maintenant utiliser les différentes routes de l'API documentées en dessous.
+Vous pouvez maintenant utiliser les différentes routes de l'API documentées ci-dessous.
 
 ## Documentation de l'API
 

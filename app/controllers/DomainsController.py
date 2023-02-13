@@ -5,6 +5,14 @@ from app.services.DomainsService import DomainsService
 class DnsController:
 
     @staticmethod
+    async def find_all_phishing_sites_and_location_by_domain(domain):
+        sites = []
+        phishing_sites = await DomainsService.find_all_phishing_sites_by_domain(domain)
+        for site in phishing_sites:
+            sites.append(await DnsController.data_to_object(site))
+        return sites
+
+    @staticmethod
     async def find_all_phishing_sites_by_domain(domain):
         return await DomainsService.find_all_phishing_sites_by_domain(domain)
 

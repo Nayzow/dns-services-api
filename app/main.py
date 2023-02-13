@@ -18,21 +18,21 @@ app.add_middleware(
 )
 
 
-@app.get("/phishing/{domain}")
+@app.get("/api/phishing/{domain}")
 async def find_phishing_sites_by_domain(domain):
     return await DnsController.find_all_phishing_sites_by_domain(domain)
 
 
-@app.get("/ip/{domain}")
+@app.get("/api/ip/{domain}")
 async def find_ip_by_domain(domain):
     return await DnsController.find_ip_by_domain(domain)
 
 
-@app.get("/location/{domain}")
+@app.get("/api/location/{domain}")
 async def find_location_by_domain(domain):
     return await DnsController.find_location_by_domain(domain)
 
 
-@app.get("/available/{domain}")
+@app.get("/api/available/{domain}")
 async def find_available_domain(domain):
     return await DnsController.find_available_domain(domain)
