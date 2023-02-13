@@ -1,10 +1,10 @@
-# Dns-Services-Api
+# Domains.ph API
 
-Api Python FastApi pour recenser et géolocaliser de potentiels sites de phishing frauduleux.
+Api Python FastApi pour recenser et localiser de potentiels sites de phishing frauduleux.
 
-- Lien de l'application web pour cette API : https://github.com/Nayzow/DNS-Services-Frontend
+- Lien de l'application web développé pour cette API : https://github.com/Nayzow/DNS-Services-Frontend
 
-- Lien de la documentation complete du projet pour lancer l'API avec l'application web : https://github.com/Nayzow/Domain-sh
+- Lien de la documentation complete du projet pour lancer l'API avec l'application web : https://github.com/Nayzow/domains-ph
 
 
 ### 1. Cloner le dépôt
