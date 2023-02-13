@@ -18,6 +18,15 @@ class DomainsService:
             return "No data found"
 
     @staticmethod
+    async def find_data_by_domain(domain):
+        url = DomainsService.URL_DOMAIN_TO_HEXA_API + domain
+        response = requests.get(url).json()["domain_as_hexadecimal"]
+        if response:
+            return response
+        else:
+            return "No data found"
+
+    @staticmethod
     async def find_all_phishing_sites_by_domain(domain):
         hexadecimal = await DomainsService.convert_to_hexadecimal(domain)
         url = DomainsService.URL_PHISHING_API + hexadecimal

@@ -1,6 +1,6 @@
 class Domain:
-    def __init__(self, dns, hexadecimal, ip, location):
-        self.dns = dns
-        self.hexadecimal = hexadecimal
+    def __init__(self, name, ip, available, location):
+        self.name = name
         self.ip = ip
+        self.available = available
         self.location = location

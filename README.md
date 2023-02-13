@@ -52,20 +52,54 @@ L'API expose ces différentes routes :
 
 ### GET
 
+#### Les deux principales routes, notamment utilisées pour la web app.
+
 ```
-/phishing/{domain} : retourne les potentiels sites de phishing associés à un nom de domaine.
+/api/domains/{domain} : retourne les potentiels sites de phishing associés à un nom de domaine.
 ```
 
 ```
-/ip/{domain} : retourne l'ip d'un nom de domaine.
+/api/domain/{domain} : retourne les information relatives à un nom de domaine.
+```
+
+#### Réponse de la requête pour récupérer la data sur un domaine
+
+```json
+{
+  "name": "google.fr",
+  "ip": "142.250.201.163",
+  "available": false,
+  "location": {
+    "continent": "North America",
+    "country": "United States",
+    "regionName": "Colorado",
+    "city": "Arvada",
+    "zip": "80004",
+    "lat": 39.8147,
+    "lon": -105.1168,
+    "timezone": "America/Denver",
+    "currency": "USD",
+    "isp": "Google LLC",
+    "org": "Google LLC",
+    "reverse": "par10s41-in-f3.1e100.net",
+    "mobile": false,
+    "proxy": false,
+    "hosting": true,
+    "query": "142.250.75.227"
+  }
+}
+```
+
+#### Autres routes utiles
+
+```
+/api/ip/{domain} : retourne l'ip d'un nom de domaine.
 ```
 
 ```
-/location/{domain} : retourne des informations de géolocalisation d'un nom de domaine
+/api/location/{domain} : retourne des informations de géolocalisation d'un nom de domaine
 ```
 
 ```
-/available/{domain} : retourne true si le domaine est disponible à l'achat, false si il ne l'est pas.
+/api/available/{domain} : retourne true si le domaine est disponible à l'achat, false si il ne l'est pas.
 ```
-
-Notez que la requête GET /phishing/location/{domain} peut prendre quelque temps à se réaliser.
