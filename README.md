@@ -2,6 +2,10 @@
 
 Api Python FastApi pour recenser et géolocaliser de potentiels sites de phishing frauduleux.
 
+- Lien de l'application web : https://github.com/Nayzow/DNS-Services-Frontend
+
+- Lien de la documentation complete du projet pour installer l'API et l'application web : https://github.com/Nayzow/Domain-sh
+
 ### 1. Cloner le dépôt
 
 ```bash
