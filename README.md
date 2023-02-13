@@ -4,7 +4,7 @@ Api Python FastApi pour recenser et géolocaliser de potentiels sites de phishin
 
 - Lien de l'application web pour cette API : https://github.com/Nayzow/DNS-Services-Frontend
 
-- Lien de la documentation complete du projet : https://github.com/Nayzow/Domain-sh
+- Lien de la documentation complete du projet pour lancer l'API avec l'application web : https://github.com/Nayzow/Domain-sh
 
 
 ### 1. Cloner le dépôt
@@ -32,7 +32,7 @@ Après avoir exécuté ces commandes, votre API FastAPI sera disponible à l'adr
 
 ### Lancer l'API avec Docker
 
-Si vous souhaitez utiliser Docker, voici les étapes pour construire et exécuter ce projet
+Assurez-vous d'avoir Docker installé sur votre ordinateur. Lien pour télécharger Docker : https://www.docker.com/products/docker-desktop/
 
 #### 1. Build l'image Docker
 
@@ -53,7 +53,7 @@ Vous pouvez maintenant utiliser les différentes routes de l'API documentées ci
 
 ## Documentation de l'API
 
-L'API expose ces différentes routes :
+L'API expose les routes suivantes :
 
 ### GET
 
