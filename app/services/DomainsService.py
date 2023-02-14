@@ -13,6 +13,7 @@ class DomainsService:
         try:
             response.raise_for_status()
             return response.json()
+
         except requests.exceptions.HTTPError as errh:
             return {"error": f"HTTP error: {errh}"}
         except requests.exceptions.ConnectionError as errc:
