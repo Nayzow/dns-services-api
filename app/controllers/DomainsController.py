@@ -1,3 +1,5 @@
+from typing import List
+
 from app.models.Domain import Domain
 from app.services.DomainsService import DomainsService
 
@@ -5,7 +7,7 @@ from app.services.DomainsService import DomainsService
 class DomainsController:
 
     @staticmethod
-    async def find_all_phishing_sites_and_location_by_domain(domain):
+    async def find_all_phishing_sites_and_location_by_domain(domain: str) -> list[Domain]:
         sites = []
         phishing_sites = await DomainsService.find_all_phishing_sites_by_domain(domain)
         for site in phishing_sites:
@@ -13,30 +15,30 @@ class DomainsController:
         return sites
 
     @staticmethod
-    async def find_all_phishing_sites_by_domain(domain):
+    async def find_all_phishing_sites_by_domain(domain: str) -> str:
         return await DomainsService.find_all_phishing_sites_by_domain(domain)
 
     @staticmethod
-    async def find_data_by_domain(domain):
+    async def find_data_by_domain(domain: str) -> Domain:
         return await DomainsController.data_to_object(domain)
 
     @staticmethod
-    async def find_location_by_domain(domain):
+    async def find_location_by_domain(domain: str) -> str:
         return await DomainsService.find_location_by_domain(domain)
 
     @staticmethod
-    async def find_ip_by_domain(domain):
+    async def find_ip_by_domain(domain: str) -> str:
         return await DomainsService.find_ip_by_domain(domain)
 
     @staticmethod
-    async def find_available_domain(domain):
+    async def find_available_domain(domain: str) -> bool:
         return await DomainsService.find_available_domain(domain)
 
     @staticmethod
-    async def data_to_object(domain_name):
-        ip = await DomainsService.find_ip_by_domain(domain_name)
-        available = await DomainsService.find_available_domain(domain_name)
-        location = await DomainsService.find_location_by_domain(domain_name)
+    async def data_to_object(domain_name: str) -> Domain:
+        ip: str = await DomainsService.find_ip_by_domain(domain_name)
+        available: bool = await DomainsService.find_available_domain(domain_name)
+        location: [] = await DomainsService.find_location_by_domain(domain_name)
 
         return Domain(
             domain_name,
