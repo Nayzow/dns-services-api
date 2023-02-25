@@ -33,7 +33,7 @@ async def request_exception_handler(request, exc):
 async def find_phishing_sites_by_domain(domain: str):
     if not isinstance(domain, str):
         raise HTTPException(status_code=400, detail="Invalid domain format")
-    return await DomainsController.find_all_phishing_sites_by_domain(domain)
+    return await DomainsController.find_phishing_domains_by_domain_name(domain)
 
 
 @app.get("/api/domain/{domain}")
@@ -61,4 +61,4 @@ async def find_location_by_domain(domain: str):
 async def find_if_domain_is_available(domain: str):
     if not isinstance(domain, str):
         raise HTTPException(status_code=400, detail="Invalid domain format")
-    return await DomainsController.find_available_domain(domain)
+    return await DomainsController.find_if_domain_is_available(domain)

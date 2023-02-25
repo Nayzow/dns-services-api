@@ -40,7 +40,7 @@ class DomainsService:
         hexadecimal = await DomainsService.convert_to_hexadecimal(domain)
         url = DomainsService.URL_PHISHING_API + hexadecimal
         response = requests.get(url)
-        return DomainsService.handle_request_errors(response)
+        return DomainsService.handle_request_errors(response)["fuzzy_domains"]
 
     @staticmethod
     async def find_all_phishing_sites_by_domain_hexadecimal(hexadecimal: str) -> str:
@@ -67,7 +67,7 @@ class DomainsService:
         return await DomainsService.find_location_by_ip(ip) if ip else {"error": "No IP found"}
 
     @staticmethod
-    async def find_available_domain(domain: str) -> bool:
+    async def find_if_domain_is_available(domain: str) -> bool:
         url = DomainsService.URL_MX_API + await DomainsService.convert_to_hexadecimal(domain)
         response = requests.get(url)
         return DomainsService.handle_request_errors(response)["mx"] == []
