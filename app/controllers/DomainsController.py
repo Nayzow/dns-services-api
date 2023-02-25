@@ -7,7 +7,7 @@ from app.services.DomainsService import DomainsService
 class DomainsController:
 
     @staticmethod
-    async def find_phishing_domains_by_domain_name(domain: str) -> str:
+    async def find_phishing_domains_by_domain_name(domain: str) -> list:
         return await DomainsService.find_all_phishing_sites_by_domain(domain)
 
     @staticmethod
@@ -15,7 +15,7 @@ class DomainsController:
         return await DomainsController.data_to_object(domain)
 
     @staticmethod
-    async def find_location_by_domain(domain: str) -> str:
+    async def find_location_by_domain(domain: str) -> dict:
         return await DomainsService.find_location_by_domain(domain)
 
     @staticmethod

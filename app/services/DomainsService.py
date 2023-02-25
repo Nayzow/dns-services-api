@@ -13,61 +13,65 @@ class DomainsService:
         try:
             response.raise_for_status()
             return response.json()
-
-        except requests.exceptions.HTTPError as errh:
-            return {"error": f"HTTP error: {errh}"}
-        except requests.exceptions.ConnectionError as errc:
-            return {"error": f"Connection error: {errc}"}
-        except requests.exceptions.Timeout as errt:
-            return {"error": f"Timeout error: {errt}"}
         except requests.exceptions.RequestException as err:
-            return {"error": f"Unknown error: {err}"}
+            return {"error": f"Request error: {err}"}
+
+    @staticmethod
+    async def make_get_request(url: str) -> dict:
+        response = requests.get(url)
+        return DomainsService.handle_request_errors(response)
 
     @staticmethod
     async def convert_to_hexadecimal(domain: str) -> str:
         url = DomainsService.URL_DOMAIN_TO_HEXA_API + domain
-        response = requests.get(url)
-        return DomainsService.handle_request_errors(response)["domain_as_hexadecimal"]
+        response_dict = await DomainsService.make_get_request(url)
+        return response_dict.get("domain_as_hexadecimal")
 
     @staticmethod
-    async def find_data_by_domain(domain: str) -> str:
+    async def find_data_by_domain(domain: str) -> dict:
         url = DomainsService.URL_DOMAIN_TO_HEXA_API + domain
-        response = requests.get(url)
-        return DomainsService.handle_request_errors(response)
+        response_dict = await DomainsService.make_get_request(url)
+        return response_dict
 
     @staticmethod
-    async def find_all_phishing_sites_by_domain(domain: str) -> str:
+    async def find_all_phishing_sites_by_domain(domain: str) -> list:
         hexadecimal = await DomainsService.convert_to_hexadecimal(domain)
         url = DomainsService.URL_PHISHING_API + hexadecimal
-        response = requests.get(url)
-        return DomainsService.handle_request_errors(response)["fuzzy_domains"]
+        response_dict = await DomainsService.make_get_request(url)
+        return response_dict.get("fuzzy_domains", [])
 
     @staticmethod
-    async def find_all_phishing_sites_by_domain_hexadecimal(hexadecimal: str) -> str:
+    async def find_all_phishing_sites_by_domain_hexadecimal(hexadecimal: str) -> dict:
         url = DomainsService.URL_PHISHING_API + hexadecimal
-        response = requests.get(url)
-        return DomainsService.handle_request_errors(response)
+        response_dict = await DomainsService.make_get_request(url)
+        return response_dict
 
     @staticmethod
     async def find_ip_by_domain(domain: str) -> str:
         hexadecimal = await DomainsService.convert_to_hexadecimal(domain)
         url = DomainsService.URL_IP_API + hexadecimal
-        response = requests.get(url)
-        return DomainsService.handle_request_errors(response)["ip"]
+        response_dict = await DomainsService.make_get_request(url)
+        return response_dict.get("ip")
 
     @staticmethod
-    async def find_location_by_ip(ip: str) -> str:
+    async def find_location_by_ip(ip: str) -> dict:
         url = DomainsService.URL_LOCATION_API + ip + "?fields=continent,country,regionName,city,zip,lat,lon,timezone,currency,isp,org,reverse,mobile,proxy,hosting,query"
-        response = requests.get(url)
-        return DomainsService.handle_request_errors(response)
+        response_dict = await DomainsService.make_get_request(url)
+        return response_dict
 
     @staticmethod
-    async def find_location_by_domain(domain: str) -> str:
+    async def find_location_by_domain(domain: str) -> dict:
         ip = await DomainsService.find_ip_by_domain(domain)
-        return await DomainsService.find_location_by_ip(ip) if ip else {"error": "No IP found"}
+        if ip:
+            return await DomainsService.find_location_by_ip(ip)
+        else:
+            return {"error": "No IP found"}
 
     @staticmethod
     async def find_if_domain_is_available(domain: str) -> bool:
         url = DomainsService.URL_MX_API + await DomainsService.convert_to_hexadecimal(domain)
-        response = requests.get(url)
-        return DomainsService.handle_request_errors(response)["mx"] == []
+        response_dict = await DomainsService.make_get_request(url)
+        if not response_dict.get("mx"):
+            return True
+        else:
+            return False
